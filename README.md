@@ -42,7 +42,7 @@ The project includes two main analysis scripts:
 ## Results
 
 ### Failure Analysis Results
-![Failure Analysis](images/failure_analysis.png)
+![Failure Analysis](images/failure_analysis1.png)
 *Failure analysis showing various failure modes and safety factors for a design with no variance in cross seciton*
 ![Failure Analysis 2](images/failure_analysis2.png)
 *Failure analysis showing various failure modes and safety factors for a design with huge variance in cross section, thickness, splicing, diaphragm thickness, and more*
