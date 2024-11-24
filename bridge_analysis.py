@@ -2,9 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
-# ----------------------------
-# Set up the Civil Engineering theme
-# ----------------------------
+
 sns.set_theme(style="whitegrid")
 
 # Suppress divide by zero warnings
@@ -319,8 +317,8 @@ def calculate_material_usage(design_params):
             'diaphragms_mm2': diaphragm_area
         }
     }
-def set_civil_engineering_style():
-    # Custom color palette inspired by construction materials
+def bentz_civ102_style():
+    # Custom color palette inspired by the beautiful buildings known as galbraith and SF
     colors = {
         'timber_brown': '#8B4513',
         'steel_grey': '#71797E',
@@ -333,7 +331,7 @@ def set_civil_engineering_style():
     # Set the style
     plt.style.use('seaborn-v0_8-paper')
     
-    # Custom parameters
+    # Google Colours
     plt.rcParams.update({
         'figure.facecolor': colors['concrete_beige'],
         'axes.facecolor': '#F5F5DC',  # Antique white
@@ -356,7 +354,7 @@ def plot_failure_envelopes(x, V_env, V_fail_shear, V_fail_glue, V_fail_shear_buc
                           M_env, M_fail_tension, M_fail_compression, M_fail_buckling_flange,
                           M_fail_buckling_flange_tips, M_fail_buckling_webs, load_case, design_name):
     
-    colors = set_civil_engineering_style()
+    colors = bentz_civ102_style()
     
     # Add more engineering-themed colors
     colors.update({
