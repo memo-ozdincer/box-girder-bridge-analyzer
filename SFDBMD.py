@@ -252,7 +252,53 @@ for load_case in [1, 2]:
     max_moment_info = {
         'moment_text': f'Max Bending Moment = {max_moment_value:.2f} N·mm at x = {x_moment_value:.1f} mm',
     }
+def plot_3D_envelope(load_case, design_params, locomotive_at_front=True):
+    L = 1200  # Length of bridge in mm
+    P_total, axle_loads, axle_offsets, train_length = get_train_loads(load_case, locomotive_at_front)
+    
+    # Create position array for train front
+    n_positions = 121  # One position every 10mm
+    train_positions = np.linspace(-train_length, L, n_positions)
+    
+    # Create arrays to store results
+    x = np.linspace(0, L, L+1)  # 1mm spacing along bridge
+    V_array = np.zeros((len(train_positions), len(x)))
+    M_array = np.zeros((len(train_positions), len(x)))
+    
+    # Calculate SFD and BMD for each position
+    for i, pos in enumerate(train_positions):
+        _, V, M, _, _, _ = compute_SFD_BMD(load_case, design_params, pos, locomotive_at_front)
+        V_array[i] = V
+        M_array[i] = M
+    
+    # Create meshgrid for 3D plotting
+    X, Y = np.meshgrid(x, train_positions)
+    
+    # Create 3D plots
+    fig = plt.figure(figsize=(15, 6))
+    
+    # Shear Force 3D Plot
+    ax1 = fig.add_subplot(121, projection='3d')
+    surf1 = ax1.plot_surface(X, Y, V_array, cmap='viridis')
+    ax1.set_xlabel('Bridge Position (mm)')
+    ax1.set_ylabel('Train Front Position (mm)')
+    ax1.set_zlabel('Shear Force (N)')
+    ax1.set_title(f'Shear Force Distribution\nLoad Case {load_case}')
+    plt.colorbar(surf1, ax=ax1)
+    
+    # Bending Moment 3D Plot
+    ax2 = fig.add_subplot(122, projection='3d')
+    surf2 = ax2.plot_surface(X, Y, M_array, cmap='viridis')
+    ax2.set_xlabel('Bridge Position (mm)')
+    ax2.set_ylabel('Train Front Position (mm)')
+    ax2.set_zlabel('Bending Moment (N·mm)')
+    ax2.set_title(f'Bending Moment Distribution\nLoad Case {load_case}')
+    plt.colorbar(surf2, ax=ax2)
+    
+    plt.tight_layout()
+    plt.show()
 
     # Plot SFD and BMD at position of maximum moment
-    plot_SFD_BMD_specific(x_moment, V_moment, M_moment, load_case, design_name,
+plot_SFD_BMD_specific(x_moment, V_moment, M_moment, load_case, design_name,
                           position_max_moment, max_moment_info, x_shear_value, x_moment_value, axles_moment)
+plot_3D_envelope(2, 'Design 0', True)
