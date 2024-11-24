@@ -37,7 +37,7 @@ The analysis considers eight different failure modes for thin-walled box girders
 
 The project includes two main analysis scripts:
 1. `bridge_analysis.py`: Main analysis tool including all failure modes
-2. `SFDBMD.py`: Detailed shear force and bending moment analysis
+2. `SFDBMD.py`: Detailed shear force and bending moment analysis looping over each train position and finding max BMD and SFD for your given Load Case. Returns graph, train position, highest shear force/beending moment and position of it.
 
 ## Results
 
