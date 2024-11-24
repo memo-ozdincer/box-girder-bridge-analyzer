@@ -5,7 +5,7 @@ import warnings
 
 sns.set_theme(style="whitegrid")
 
-# Suppress divide by zero warnings
+# Just suppress the divide by zero warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 # ----------------------------
