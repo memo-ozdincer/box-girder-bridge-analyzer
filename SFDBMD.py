@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 
-# Set up the Civil Engineering theme
 sns.set_theme(style="whitegrid")
 
 # Suppress divide by zero warnings
