@@ -1,4 +1,4 @@
-# Full Numerical and Graphical Bridge Analyzer for Box Girder-type Bridges
+# Numerical and Graphical Bridge Analyzer for Box Girder-Type Bridges' Shear and Bending-Caused Failure Modes
 For CIV102
 
 This project implements structural analysis tools for a thin-walled box girder bridge design, including shear force diagram (SFD), bending moment diagram (BMD), and failure analysis calculations.
